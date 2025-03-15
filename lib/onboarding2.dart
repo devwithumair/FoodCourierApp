@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcourier/login_screen.dart';
 import 'package:foodcourier/onboarding1.dart';
 
 class OnboardingScreenTwo extends StatelessWidget {
@@ -89,10 +90,10 @@ class OnboardingScreenTwo extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 20),
                       child: IconButton(
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => Login()),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Login()),
+                          );
                         },
                         icon: Icon(Icons.arrow_forward, color: Colors.red),
                       ),
