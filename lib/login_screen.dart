@@ -19,20 +19,43 @@ class _LoginState extends State<Login> {
 
   login() async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passController.text,
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passController.text.trim(),
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomeView()),
+
+      // Clear input fields
+      emailController.clear();
+      passController.clear();
+
+      // Navigate to HomeView
+      Get.offAll(() => const HomeView());
+
+      // Success message
+      Get.snackbar(
+        'Success',
+        'Logged in successfully!',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
       );
     } on FirebaseAuthException catch (e) {
+      String message = 'An error occurred';
+
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        message = 'No user found for that email.';
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        message = 'Wrong password provided.';
       }
+
+      // Show error message
+      Get.snackbar(
+        'Login Failed',
+        message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
     }
   }
 
@@ -43,14 +66,11 @@ class _LoginState extends State<Login> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 40),
-            Image.asset(
-              'assets/images/boarding2.jpg', // Replace with your asset image
-              height: 200,
-            ),
-            SizedBox(height: 20),
+            const SizedBox(height: 40),
+            Image.asset('assets/images/boarding2.jpg', height: 200),
+            const SizedBox(height: 20),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Column(
                 children: [
                   Row(
@@ -58,22 +78,18 @@ class _LoginState extends State<Login> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Get.to(Signup());
+                          Get.to(() => const Signup());
                         },
-                        child: Text(
+                        child: const Text(
                           'Create Account',
-                          style: TextStyle(
-                            fontSize: 18,
-                            // fontWeight: FontWeight.bold,
-                            color: Colors.black54,
-                          ),
+                          style: TextStyle(fontSize: 18, color: Colors.black54),
                         ),
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.to(login());
+                          Get.to(() => const Login());
                         },
-                        child: Text(
+                        child: const Text(
                           'Login',
                           style: TextStyle(
                             fontSize: 18,
@@ -84,37 +100,36 @@ class _LoginState extends State<Login> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   TextField(
                     controller: emailController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Email address',
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   TextField(
                     controller: passController,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Password',
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
-                      login();
-                      // Get.to(HomeView());
-                    },
+                    onPressed: login,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pink,
-                      minimumSize: Size(double.infinity, 50),
+                      minimumSize: const Size(double.infinity, 50),
                     ),
-                    child: Text('LogIn', style: TextStyle(color: Colors.white)),
+                    child: const Text(
+                      'Log In',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),

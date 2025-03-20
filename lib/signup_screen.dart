@@ -15,6 +15,7 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
   registeruser() async {
     try {
@@ -23,12 +24,36 @@ class _SignupState extends State<Signup> {
             email: emailController.text,
             password: passController.text,
           );
+      // Clear input fields
+      emailController.clear();
+      passController.clear();
+      nameController.clear();
+
+      // Show success message
+      Get.snackbar(
+        'Success',
+        'User Successfully Registered',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
     } on FirebaseAuthException catch (e) {
+      String message = 'An error occurred';
+
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        message = 'The password provided is too weak.';
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        message = 'The account already exists for that email.';
       }
+
+      // Show error message
+      Get.snackbar(
+        'Error',
+        message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
     } catch (e) {
       print(e);
     }
@@ -88,6 +113,7 @@ class _SignupState extends State<Signup> {
                   ),
                   SizedBox(height: 20),
                   TextField(
+                    controller: nameController,
                     decoration: InputDecoration(
                       labelText: 'Full Name',
                       border: OutlineInputBorder(),
