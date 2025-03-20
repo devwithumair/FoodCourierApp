@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:foodcourier/chat_screen.dart';
 import 'package:foodcourier/detailmenu_screen.dart';
-import 'package:foodcourier/cart.dart';
+import 'package:foodcourier/orderdetail_screen.dart';
 import 'package:foodcourier/profile_screen.dart';
 
 import 'package:get/get.dart';

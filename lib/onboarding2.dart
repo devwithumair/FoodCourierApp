@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcourier/login_screen.dart';
 import 'package:foodcourier/onboarding1.dart';
+import 'package:get/get.dart';
 
 class OnboardingScreenTwo extends StatelessWidget {
   const OnboardingScreenTwo({super.key});
@@ -46,12 +47,7 @@ class OnboardingScreenTwo extends StatelessWidget {
                 // Next Button
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => OnboardingScreenTwo(),
-                      ),
-                    );
+                    Get.to(Login());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
@@ -72,12 +68,7 @@ class OnboardingScreenTwo extends StatelessWidget {
                     // Skip Button
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OnBoardingOne(),
-                          ),
-                        );
+                        Get.to(OnBoardingOne());
                       },
                       child: Text(
                         'Skip',
@@ -90,10 +81,7 @@ class OnboardingScreenTwo extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 20),
                       child: IconButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Login()),
-                          );
+                          Get.to(Login());
                         },
                         icon: Icon(Icons.arrow_forward, color: Colors.red),
                       ),

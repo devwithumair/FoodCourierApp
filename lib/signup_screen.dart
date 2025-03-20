@@ -1,6 +1,9 @@
+// ignore_for_file: avoid_print, unused_local_variable
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodcourier/login_screen.dart';
+import 'package:get/get.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -13,18 +16,21 @@ class _SignupState extends State<Signup> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
-  login() async {
+  registeruser() async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passController.text,
-      );
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: emailController.text,
+            password: passController.text,
+          );
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
       }
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -50,10 +56,7 @@ class _SignupState extends State<Signup> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Signup()),
-                          );
+                          Get.to(Signup());
                         },
                         child: Text(
                           'Create Account',
@@ -71,6 +74,7 @@ class _SignupState extends State<Signup> {
                             MaterialPageRoute(builder: (context) => Login()),
                           );
                         },
+
                         child: Text(
                           'Login',
                           style: TextStyle(
@@ -91,6 +95,7 @@ class _SignupState extends State<Signup> {
                   ),
                   SizedBox(height: 20),
                   TextField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       labelText: 'Email address',
                       border: OutlineInputBorder(),
@@ -98,6 +103,7 @@ class _SignupState extends State<Signup> {
                   ),
                   SizedBox(height: 10),
                   TextField(
+                    controller: passController,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Password',
@@ -107,10 +113,8 @@ class _SignupState extends State<Signup> {
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Login()),
-                      );
+                      registeruser();
+                      // Get.to(Login());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pink,

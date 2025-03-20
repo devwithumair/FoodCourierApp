@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "707796651782",
+    "project_id": "foodcourier-71da7",
+    "storage_bucket": "foodcourier-71da7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707796651782:android:dc3c080e861139de7b1887",
+        "android_client_info": {
+          "package_name": "com.example.foodapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe1QM1kD4mRtfj67ZQ4iBZtecHKCwmbLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707796651782:android:fa59b79b2af269517b1887",
+        "android_client_info": {
+          "package_name": "com.example.foodcourier"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe1QM1kD4mRtfj67ZQ4iBZtecHKCwmbLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

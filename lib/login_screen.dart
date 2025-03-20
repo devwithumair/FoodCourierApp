@@ -1,7 +1,10 @@
+// ignore_for_file: unused_local_variable, avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodcourier/homeview.dart';
 import 'package:foodcourier/signup_screen.dart';
+import 'package:get/get.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -19,6 +22,10 @@ class _LoginState extends State<Login> {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passController.text,
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeView()),
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -51,10 +58,7 @@ class _LoginState extends State<Login> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Signup()),
-                          );
+                          Get.to(Signup());
                         },
                         child: Text(
                           'Create Account',
@@ -67,10 +71,7 @@ class _LoginState extends State<Login> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Login()),
-                          );
+                          Get.to(login());
                         },
                         child: Text(
                           'Login',
@@ -86,6 +87,7 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 20),
                   SizedBox(height: 10),
                   TextField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       labelText: 'Email address',
                       border: OutlineInputBorder(),
@@ -93,6 +95,7 @@ class _LoginState extends State<Login> {
                   ),
                   SizedBox(height: 10),
                   TextField(
+                    controller: passController,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Password',
@@ -102,10 +105,8 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeView()),
-                      );
+                      login();
+                      // Get.to(HomeView());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pink,

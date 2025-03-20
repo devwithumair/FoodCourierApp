@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcourier/onboarding2.dart';
+import 'package:get/get.dart';
 
 class OnBoardingOne extends StatelessWidget {
   const OnBoardingOne({super.key});
@@ -45,12 +46,13 @@ class OnBoardingOne extends StatelessWidget {
                 // Next Button
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => OnboardingScreenTwo(),
-                      ),
-                    );
+                    Get.to(OnboardingScreenTwo());
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => OnboardingScreenTwo(),
+                    //   ),
+                    // );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
@@ -84,12 +86,13 @@ class OnBoardingOne extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 20),
                       child: IconButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => OnboardingScreenTwo(),
-                            ),
-                          );
+                          Get.to(OnboardingScreenTwo());
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => OnboardingScreenTwo(),
+                          //   ),
+                          // );
                         },
                         icon: Icon(Icons.arrow_forward, color: Colors.red),
                       ),
