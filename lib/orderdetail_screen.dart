@@ -1,43 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:foodcourier/location_screen.dart';
 
-class OrderDetailsScreen extends StatefulWidget {
-  const OrderDetailsScreen({super.key});
+class Cart extends StatefulWidget {
+  const Cart({super.key});
 
   @override
-  _OrderDetailsScreenState createState() => _OrderDetailsScreenState();
+  _CartState createState() => _CartState();
 }
 
-class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
+class _CartState extends State<Cart> {
   List<Map<String, dynamic>> cartItems = [
-    {
-      "name": "Pizza Spicy",
-      "restaurant": "Burger Factory LTD",
-      "price": 20,
-      "image": "assets/images/pizza.jpg",
-      "quantity": 1,
-    },
-    {
-      "name": "Pizza Spicy",
-      "restaurant": "Burger Factory LTD",
-      "price": 20,
-      "image": "assets/images/pizza.jpg",
-      "quantity": 1,
-    },
-    {
-      "name": "Pizza Spicy",
-      "restaurant": "Burger Factory LTD",
-      "price": 20,
-      "image": "assets/images/pizza.jpg",
-      "quantity": 1,
-    },
-    {
-      "name": "Pizza Spicy",
-      "restaurant": "Burger Factory LTD",
-      "price": 20,
-      "image": "assets/images/pizza.jpg",
-      "quantity": 1,
-    },
     {
       "name": "Pizza Spicy",
       "restaurant": "Burger Factory LTD",
@@ -136,15 +108,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text("Sub-Total"), Text("100 \$")],
+                      children: [
+                        Text("Sub-Total"),
+                        Text("${getTotal() + 10 - 10} \$"),
+                      ],
                     ),
+                    SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [Text("Delivery Charge"), Text("10 \$")],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text("Discount"), Text("10 \$")],
                     ),
                     Divider(),
                     Row(
@@ -155,7 +127,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "${getTotal() + 10 - 10} \$",
+                          "${getTotal() + 10} \$",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],

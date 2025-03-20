@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodcourier/homeview.dart';
 import 'package:foodcourier/orderdetail_screen.dart';
+import 'package:foodcourier/homeview.dart';
 
 class FoodDetailView extends StatelessWidget {
   const FoodDetailView({
@@ -110,9 +110,7 @@ class FoodDetailView extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => OrderDetailsScreen(),
-                          ),
+                          MaterialPageRoute(builder: (context) => Cart()),
                         );
                       },
                       child: Text(
