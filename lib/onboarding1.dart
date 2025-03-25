@@ -47,12 +47,6 @@ class OnBoardingOne extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Get.to(OnboardingScreenTwo());
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => OnboardingScreenTwo(),
-                    //   ),
-                    // );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
@@ -87,12 +81,6 @@ class OnBoardingOne extends StatelessWidget {
                       child: IconButton(
                         onPressed: () {
                           Get.to(OnboardingScreenTwo());
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => OnboardingScreenTwo(),
-                          //   ),
-                          // );
                         },
                         icon: Icon(Icons.arrow_forward, color: Colors.red),
                       ),
